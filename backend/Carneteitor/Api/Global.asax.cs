@@ -26,12 +26,14 @@ namespace Api
                 // Get customer collection
                 var customers = db.GetCollection<AfiliadoModel>("customers");
 
-                foreach (var item in list)
+                if (customers.Count() > 0)
                 {
-                    // Insert new afiliado (Id will be auto-incremented)
-                    customers.Insert(item);
+                    db.DropCollection("customers");
+                    customers.DropIndex("Documento");
                 }
 
+                // Inserting a high volume of documents (Id will be auto-incremented)
+                customers.InsertBulk(list);
                 // Index document using a document property
                 customers.EnsureIndex(x => x.Documento);
             }

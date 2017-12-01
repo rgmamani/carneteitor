@@ -162,6 +162,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\ConfigurationHelper.cs" />
+    <Compile Include="Helper\DatabaseHelper.cs" />
     <Compile Include="Helper\ReadDataHelper.cs" />
     <Compile Include="Helper\MemoryCacheHelper.cs" />
     <Compile Include="Models\AfiliadoModel.cs" />
