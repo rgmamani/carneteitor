@@ -26,7 +26,7 @@ namespace ProductsApp.Controllers
             try
             {
                 LiteCollection<AfiliadoModel> customers;
-                var databasePath = HttpContext.Current.Server.MapPath(string.Format("~/App_Data/{0}", ConfigurationHelper.DatabaseFile));
+                var databasePath = HttpContext.Current.Server.MapPath(string.Format("~/Data/{0}", ConfigurationHelper.DatabaseFile));
                 // Open database (or create if not exits)
                 using (var db = new LiteDatabase(databasePath))
                 {
@@ -57,7 +57,7 @@ namespace ProductsApp.Controllers
             try
             {
                 AfiliadoModel model;
-                var databasePath = HttpContext.Current.Server.MapPath(string.Format("~/App_Data/{0}", ConfigurationHelper.DatabaseFile));
+                var databasePath = HttpContext.Current.Server.MapPath(string.Format("~/Data/{0}", ConfigurationHelper.DatabaseFile));
                 // Open database (or create if not exits)
                 using (var db = new LiteDatabase(databasePath))
                 {
@@ -91,8 +91,8 @@ namespace ProductsApp.Controllers
 
             try
             {
-                var imagePath = HttpContext.Current.Server.MapPath(string.Format("~/App_Data/imagenes/{0}.png", parameters.Documento));
-                var defaultImagePath = HttpContext.Current.Server.MapPath("~/App_Data/imagenes/default.png");
+                var imagePath = HttpContext.Current.Server.MapPath(string.Format("~/Data/imagenes/{0}.png", parameters.Documento));
+                var defaultImagePath = HttpContext.Current.Server.MapPath("~/Data/imagenes/default.png");
                 var fileStream = new FileStream(File.Exists(imagePath) ? imagePath : defaultImagePath, System.IO.FileMode.Open);
 
                 var image = Image.FromStream(fileStream);

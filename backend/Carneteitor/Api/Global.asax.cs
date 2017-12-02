@@ -16,9 +16,9 @@ namespace Api
 
         private void LoadData()
         {
-            var filePath = HttpContext.Current.Server.MapPath(string.Format("~/App_Data/{0}", ConfigurationHelper.DataFile));
+            var filePath = HttpContext.Current.Server.MapPath(string.Format("~/Data/{0}", ConfigurationHelper.DataFile));
             var list = ReadDataHelper.Read(filePath);
-            var databasePath = HttpContext.Current.Server.MapPath(string.Format("~/App_Data/{0}", ConfigurationHelper.DatabaseFile));
+            var databasePath = HttpContext.Current.Server.MapPath(string.Format("~/Data/{0}", ConfigurationHelper.DatabaseFile));
 
             // Open database (or create if not exits)
             using (var db = new LiteDatabase(databasePath))
