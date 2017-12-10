@@ -186,3 +186,4 @@ C:\Temp\varios\git\carneteitor\backend\Carneteitor\Api\obj\Debug\Interop.Office.
 C:\Temp\varios\git\carneteitor\backend\Carneteitor\Api\obj\Debug\Api.csproj.ResolveComReference.cache
 C:\Temp\varios\git\carneteitor\backend\Carneteitor\Api\obj\Debug\Api.dll
 C:\Temp\varios\git\carneteitor\backend\Carneteitor\Api\obj\Debug\Api.pdb
+C:\Temp\varios\git\carneteitor\backend\Carneteitor\Api\bin\Data\imagenes\default.png

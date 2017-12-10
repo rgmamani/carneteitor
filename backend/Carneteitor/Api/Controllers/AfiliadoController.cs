@@ -71,6 +71,8 @@ namespace ProductsApp.Controllers
                 {
                     return NotFound();
                 }
+                
+                model.ImagenPerfilUrl = Url.Link("DefaultApi", new { controller = "Afiliado", action = "get-profile-image", Documento = model.Documento });
 
                 return Ok(model);
             }
