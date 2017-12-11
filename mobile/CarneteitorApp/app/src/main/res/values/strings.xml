@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CarneteitorApp</string>
+
+    <!-- Strings related to login -->
+    <string name="consulta_afiliacion">Consulta Afiliación</string>
+    <string name="dni">DNI</string>
+    <string name="consultar">Consultar</string>
+    <string name="title_activity_error">ErrorActivity</string>
+</resources>
