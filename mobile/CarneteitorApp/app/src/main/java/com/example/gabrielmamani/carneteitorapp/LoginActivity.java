@@ -36,15 +36,17 @@ public class LoginActivity extends AppCompatActivity {
                 try{
                     if (validateDNI(dni)) {
                         String url = "http://192.168.1.7:8090/api/Afiliado/get-by-id?documento=" + dni;
-                        new RetrieveFeedTask().execute(url);
-                        //new MockRetrieveFeedTask().execute(url);
+                        //new RetrieveFeedTask().execute(url);
+                        new MockRetrieveFeedTask().execute(url);
                     }
                     else{
                         // TODO: redireccionar a la vista de error
+                        goToError("Afiliado no encontrado","El DNI ingresado no corresponde a un abonado en servicio.");
                     }
                 }
                 catch(Exception ex){
                     // TODO: redireccionar a la vista de error
+                    goToError("Error","Ha ocurrido un error inesperado.");
                 }
             }
         });
@@ -84,6 +86,15 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(userInfoIntent);
     }
 
+    private void goToError(String title, String message) {
+        Intent intent = new Intent(LoginActivity.this, ErrorActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("Title", title);
+        bundle.putString("Message", message);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
     class MockRetrieveFeedTask extends AsyncTask<String, Void, JSONObject> {
         protected JSONObject doInBackground(String... urls) {
 
@@ -119,17 +130,16 @@ public class LoginActivity extends AppCompatActivity {
 
                 try {
                     responses = client.newCall(request).execute();
+                    String jsonData = responses.body().string();
+                    JSONObject Jobject = new JSONObject(jsonData);
+
+                    return Jobject;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-                String jsonData = responses.body().string();
-                JSONObject Jobject = new JSONObject(jsonData);
-
-                return Jobject;
             } catch (JSONException e) {
                 e.printStackTrace();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 

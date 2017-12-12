@@ -6,24 +6,25 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 public class ErrorActivity extends AppCompatActivity {
+    private String Title = "";
+    private String Message = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_error);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        Bundle bundle = getIntent().getExtras();
+        Title = bundle.getString("Title");
+        Message = bundle.getString("Message");
+
+        TextView txtTitulo = (TextView)findViewById(R.id.txtTitulo);
+        TextView txtMensaje = (TextView)findViewById(R.id.txtMensaje);
+
+        txtTitulo.setText(Title);
+        txtMensaje.setText(Message);
     }
-
 }

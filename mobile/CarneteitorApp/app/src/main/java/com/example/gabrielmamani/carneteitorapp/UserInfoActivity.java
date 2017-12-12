@@ -14,7 +14,6 @@ public class UserInfoActivity extends AppCompatActivity {
 
     TextView txtName;
     TextView txtDni;
-
     ImageView photoView;
 
     @Override
@@ -34,6 +33,5 @@ public class UserInfoActivity extends AppCompatActivity {
 
             Picasso.with(this).load(userData.getStringExtra(Constants.keyImage)).into(photoView);
         }
-
     }
 }
