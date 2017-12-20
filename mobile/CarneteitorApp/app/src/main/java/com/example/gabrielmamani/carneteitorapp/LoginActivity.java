@@ -35,9 +35,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 try{
                     if (validateDNI(dni)) {
-                        String url = "http://192.168.1.7:8090/api/Afiliado/get-by-id?documento=" + dni;
-                        //new RetrieveFeedTask().execute(url);
-                        new MockRetrieveFeedTask().execute(url);
+                        String url = "http://amet.glubatec.com/api/Afiliado/get-by-id?documento=" + dni;
+                        new RetrieveFeedTask().execute(url);
+                        //new MockRetrieveFeedTask().execute(url);
                     }
                     else{
                         // TODO: redireccionar a la vista de error
