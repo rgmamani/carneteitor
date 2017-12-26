@@ -10,5 +10,5 @@ public class Constants {
     public static final String keyApellido = "Apellido";
     public static final String keyLocalidad = "Localidad";
     public static final String keyProv = "Provincia";
-    public static final String keyImage = "Provincia";
+    public static final String keyImage = "ImagenPerfilUrl";
 }
