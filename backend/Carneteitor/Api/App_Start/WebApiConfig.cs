@@ -1,5 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
+using Api.Helper;
 
 namespace Api
 {
@@ -8,7 +10,7 @@ namespace Api
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            log4net.Config.XmlConfigurator.Configure();
+            config.Services.Add(typeof(IExceptionLogger), new ExceptionManagerApiHelper());
             // Web API routes
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(

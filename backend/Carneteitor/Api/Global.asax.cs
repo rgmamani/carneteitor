@@ -4,7 +4,7 @@ using LiteDB;
 using System.Web;
 using System.Web.Http;
 
-[assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 namespace Api
 {
     public class WebApiApplication : HttpApplication

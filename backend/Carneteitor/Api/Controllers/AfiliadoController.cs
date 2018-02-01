@@ -1,25 +1,21 @@
-﻿using System.Web.Http;
-using Api.Models;
-using LiteDB;
-using System.Web;
-using Api.Helper;
-using System.IO;
-using System.Net.Http;
-using System.Net;
-using System.Net.Http.Headers;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System;
-using log4net;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Web;
+using System.Web.Http;
+using Api.Helper;
+using Api.Models;
+using LiteDB;
 
-namespace ProductsApp.Controllers
+namespace Api.Controllers
 {
     [AllowAnonymous]
     public class AfiliadoController : ApiController
     {
-        //Declare an instance for log4net
-        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         [HttpGet, ActionName("get-all")]
         public IHttpActionResult ObtenerAfiliados()
         {
@@ -41,7 +37,6 @@ namespace ProductsApp.Controllers
             }
             catch (Exception ex)
             {
-                Log.Error("ActionName: get-all", ex);
                 return InternalServerError();
             }
         }
@@ -71,14 +66,13 @@ namespace ProductsApp.Controllers
                 {
                     return NotFound();
                 }
-                
+
                 model.ImagenPerfilUrl = Url.Link("DefaultApi", new { controller = "Afiliado", action = "get-profile-image", Documento = model.Documento });
 
                 return Ok(model);
             }
             catch (Exception ex)
             {
-                Log.Error("ActionName: get-by-id", ex);
                 return InternalServerError();
             }
         }
@@ -94,27 +88,32 @@ namespace ProductsApp.Controllers
             try
             {
                 var imagePath = HttpContext.Current.Server.MapPath(string.Format("~/Data/imagenes/{0}.png", parameters.Documento));
-                var defaultImagePath = HttpContext.Current.Server.MapPath("~/Data/imagenes/default.png");
-                var fileStream = new FileStream(File.Exists(imagePath) ? imagePath : defaultImagePath, System.IO.FileMode.Open);
 
-                var image = Image.FromStream(fileStream);
-                var memoryStream = new MemoryStream();
-                image.Save(memoryStream, ImageFormat.Jpeg);
+                if (!File.Exists(imagePath))
+                {
+                    imagePath = HttpContext.Current.Server.MapPath("~/Data/imagenes/default.png");
+                }
 
                 var result = new HttpResponseMessage(HttpStatusCode.OK);
-                result.Content = new ByteArrayContent(memoryStream.ToArray());
-                result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
+
+                using (var fileStream = new FileStream(imagePath, System.IO.FileMode.Open))
+                {
+                    var image = Image.FromStream(fileStream);
+                    var memoryStream = new MemoryStream();
+                    image.Save(memoryStream, ImageFormat.Jpeg);
+
+                    result.Content = new ByteArrayContent(memoryStream.ToArray());
+                    result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
+                }
 
                 return result;
             }
             catch (FileNotFoundException ex)
             {
-                Log.Warn("File not found", ex);
                 return new HttpResponseMessage(HttpStatusCode.NotFound);
             }
             catch (Exception ex)
             {
-                Log.Error("ActionName: get-profile-image", ex);
                 return new HttpResponseMessage(HttpStatusCode.InternalServerError);
             }
         }
