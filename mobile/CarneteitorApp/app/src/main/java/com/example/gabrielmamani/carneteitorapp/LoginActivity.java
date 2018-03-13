@@ -20,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText txtDni;
     Button btnLogin;
 
+    String GENERIC_ERROR = "Ha ocurrido un error, intentelo nuevamente";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,19 +35,17 @@ public class LoginActivity extends AppCompatActivity {
                 String dni = txtDni.getText().toString();
 
                 try{
-                    if (validateDNI(dni)) {
+                    if (validateDNI(dni))
+                    {
                         String url = "http://amet.glubatec.com/api/Afiliado/get-by-id?documento=" + dni;
                         new RetrieveFeedTask().execute(url);
-                        //new MockRetrieveFeedTask().execute(url);
                     }
                     else{
-                        // TODO: redireccionar a la vista de error
-                        goToError("Afiliado no encontrado","El DNI ingresado no corresponde a un abonado en servicio.");
+                        goToError("DNI inválido","El DNI ingresado no es un numero válido.");
                     }
                 }
                 catch(Exception ex){
-                    // TODO: redireccionar a la vista de error
-                    goToError("Error","Ha ocurrido un error inesperado.");
+                    goToError("Lo sentimos",GENERIC_ERROR);
                 }
             }
         });
@@ -68,20 +67,16 @@ public class LoginActivity extends AppCompatActivity {
         return true;
     }
 
-    private void displayUserInfo(JSONObject userInfo)
+    private void displayUserInfo(JSONObject userInfo) throws Exception
     {
         Intent userInfoIntent = new Intent(this, UserInfoActivity.class);
 
-        try {
-            userInfoIntent.putExtra(Constants.keyDoc, userInfo.getString(Constants.keyDoc));
-            userInfoIntent.putExtra(Constants.keyNombre, userInfo.getString(Constants.keyNombre));
-            userInfoIntent.putExtra(Constants.keyApellido, userInfo.getString(Constants.keyApellido));
-            userInfoIntent.putExtra(Constants.keyLocalidad, userInfo.getString(Constants.keyLocalidad));
-            userInfoIntent.putExtra(Constants.keyProv, userInfo.getString(Constants.keyProv));
-            userInfoIntent.putExtra(Constants.keyImage, userInfo.getString(Constants.keyImage));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        userInfoIntent.putExtra(Constants.keyDoc, userInfo.getString(Constants.keyDoc));
+        userInfoIntent.putExtra(Constants.keyNombre, userInfo.getString(Constants.keyNombre));
+        userInfoIntent.putExtra(Constants.keyApellido, userInfo.getString(Constants.keyApellido));
+        userInfoIntent.putExtra(Constants.keyLocalidad, userInfo.getString(Constants.keyLocalidad));
+        userInfoIntent.putExtra(Constants.keyProv, userInfo.getString(Constants.keyProv));
+        userInfoIntent.putExtra(Constants.keyImage, userInfo.getString(Constants.keyImage));
 
         startActivity(userInfoIntent);
     }
@@ -95,59 +90,62 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    class MockRetrieveFeedTask extends AsyncTask<String, Void, JSONObject> {
-        protected JSONObject doInBackground(String... urls) {
-
-        try {
-            JSONObject mockPatient = new JSONObject();
-            mockPatient.put(Constants.keyDoc,"1234566");
-            mockPatient.put(Constants.keyNombre, "pepito");
-            mockPatient.put(Constants.keyApellido, "lalalas");
-            mockPatient.put(Constants.keyLocalidad, "capital");
-            mockPatient.put(Constants.keyProv, "cordoba");
-            mockPatient.put(Constants.keyImage, "https://lh3.googleusercontent.com/-r0P3KDF-49M/AAAAAAAAAAI/AAAAAAAABwg/jT4NoQnkHvg/s120-p-k-rw-no/photo.jpg");
-
-            return mockPatient;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-        protected void onPostExecute(JSONObject patientInfo) {
-        displayUserInfo(patientInfo);
-    }
-}
-
     class RetrieveFeedTask extends AsyncTask<String, Void, JSONObject> {
         private Exception exception;
 
         protected JSONObject doInBackground(String... urls) {
+
+            JSONObject jObject = null;
+
             try {
                 Request request = new Request.Builder().url(urls[0]).build();
-                Response responses = null;
+                Response responses = client.newCall(request).execute();
 
                 try {
-                    responses = client.newCall(request).execute();
-                    String jsonData = responses.body().string();
-                    JSONObject Jobject = new JSONObject(jsonData);
 
-                    return Jobject;
+                    if(responses.code() == 200)
+                    {
+                        String jsonData = responses.body().string();
+                        jObject = new JSONObject(jsonData);
+                    }
+                    else if(responses.code() == 404)
+                    {
+                        jObject = new JSONObject();
+                        jObject.put("error", "El documento ingresado no pertenece a un afiliado activo");
+                    }
+                    else
+                    {
+                        jObject = new JSONObject();
+                        jObject.put("error", GENERIC_ERROR);
+                    }
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            return null;
+            return jObject;
         }
 
-        protected void onPostExecute(JSONObject patientInfo) {
-            displayUserInfo(patientInfo);
+        protected void onPostExecute(JSONObject patientInfo)
+        {
+            try
+            {
+                displayUserInfo(patientInfo);
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    goToError("Lo sentimos", patientInfo.getString("error") );
+                }
+                catch (JSONException e1)
+                {
+                    goToError("Lo sentimos", GENERIC_ERROR);
+                }
+            }
         }
     }
 }
