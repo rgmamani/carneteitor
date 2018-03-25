@@ -20,7 +20,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText txtDni;
     Button btnLogin;
 
-    String GENERIC_ERROR = "Ha ocurrido un error, intentelo nuevamente";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,15 +36,15 @@ public class LoginActivity extends AppCompatActivity {
                 try{
                     if (validateDNI(dni))
                     {
-                        String url = "http://amet.glubatec.com/api/Afiliado/get-by-id?documento=" + dni;
+                        String url = Configuration.get_user_url + dni;
                         new RetrieveFeedTask().execute(url);
                     }
                     else{
-                        goToError("DNI inválido","El DNI ingresado no es un numero válido.");
+                        goToError(getString(R.string.invalid_dni),getString(R.string.invalid_dni_extended));
                     }
                 }
                 catch(Exception ex){
-                    goToError("Lo sentimos",GENERIC_ERROR);
+                    goToError(getString(R.string.sorry),getString(R.string.general_error));
                 }
             }
         });
@@ -60,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
 
-        if(dni.length() < 6 || dni.length() > 8){
+        if(dni.length() != 7){
             return false;
         }
 
@@ -84,8 +83,8 @@ public class LoginActivity extends AppCompatActivity {
     private void goToError(String title, String message) {
         Intent intent = new Intent(LoginActivity.this, ErrorActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString("Title", title);
-        bundle.putString("Message", message);
+        bundle.putString(Constants.bundle_error_title, title);
+        bundle.putString(Constants.bundle_error_message, message);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -103,20 +102,20 @@ public class LoginActivity extends AppCompatActivity {
 
                 try {
 
-                    if(responses.code() == 200)
+                    if(responses.code() == Constants.RESPONSE_OK)
                     {
                         String jsonData = responses.body().string();
                         jObject = new JSONObject(jsonData);
                     }
-                    else if(responses.code() == 404)
+                    else if(responses.code() == Constants.RESPONSE_PATIENT_NOT_FOUND)
                     {
                         jObject = new JSONObject();
-                        jObject.put("error", "El documento ingresado no pertenece a un afiliado activo");
+                        jObject.put(Constants.errorCode, getString(R.string.patient_doesnt_exist));
                     }
                     else
                     {
                         jObject = new JSONObject();
-                        jObject.put("error", GENERIC_ERROR);
+                        jObject.put(Constants.errorCode, getString(R.string.general_error));
                     }
 
                 } catch (IOException e) {
@@ -139,11 +138,11 @@ public class LoginActivity extends AppCompatActivity {
             {
                 try
                 {
-                    goToError("Lo sentimos", patientInfo.getString("error") );
+                    goToError(getString(R.string.sorry), patientInfo.getString(Constants.errorCode) );
                 }
                 catch (JSONException e1)
                 {
-                    goToError("Lo sentimos", GENERIC_ERROR);
+                    goToError(getString(R.string.sorry),getString(R.string.general_error));
                 }
             }
         }

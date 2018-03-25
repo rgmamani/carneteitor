@@ -6,4 +6,12 @@
     <string name="dni">DNI</string>
     <string name="consultar">Consultar</string>
     <string name="title_activity_error">ErrorActivity</string>
+
+    <string name="general_error">Ha ocurrido un error, intentelo nuevamente</string>
+    <string name="sorry">Lo sentimos"</string>
+
+    <string name="invalid_dni">DNI inválido</string>
+    <string name="invalid_dni_extended">El DNI ingresado no es un numero válido.</string>
+
+    <string name="patient_doesnt_exist">El documento ingresado no pertenece a un afiliado activo.</string>
 </resources>
