@@ -19,7 +19,8 @@
         android:text="@string/consultar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/hum521l"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelinetop"
@@ -67,10 +68,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/fontWhite"
-        android:textColorHint="@color/fontWhiteHint"/>
+        android:textColorHint="@color/fontWhiteHint"
+        android:fontFamily="@font/hum521l"/>
 
     <TextView
         android:id="@+id/textView2"
+        android:fontFamily="@font/hum521l"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
