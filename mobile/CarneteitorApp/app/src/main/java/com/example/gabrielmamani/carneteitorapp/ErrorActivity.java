@@ -12,19 +12,28 @@ public class ErrorActivity extends AppCompatActivity {
     private String Title = "";
     private String Message = "";
 
+    private View backView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_error);
 
         Bundle bundle = getIntent().getExtras();
-        Title = bundle.getString("Title");
-        Message = bundle.getString("Message");
+        Title = bundle.getString(Constants.bundle_error_title);
+        Message = bundle.getString(Constants.bundle_error_message);
 
-        TextView txtTitulo = (TextView)findViewById(R.id.txtTitulo);
-        TextView txtMensaje = (TextView)findViewById(R.id.txtMensaje);
+        TextView txtTitulo = findViewById(R.id.txtTitulo);
+        TextView txtMensaje = findViewById(R.id.txtMensaje);
 
         txtTitulo.setText(Title);
         txtMensaje.setText(Message);
+
+        if(bundle.getBoolean(Constants.bundle_error_is_warning))
+        {
+            backView = findViewById(R.id.background);
+            backView.setBackgroundResource(R.drawable.back_orange);
+        }
+
     }
 }

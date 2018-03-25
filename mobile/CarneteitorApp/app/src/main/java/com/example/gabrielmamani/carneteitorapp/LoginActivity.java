@@ -46,18 +46,11 @@ public class LoginActivity extends AppCompatActivity {
                         new RetrieveFeedTask().execute(url);
                     }
                     else{
-                        Utils.displayMessageDialog(LoginActivity.this,null, getString(R.string.invalid_dni_extended), new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-
-                            }
-                        });
+                        goToError(getString(R.string.incorrect), getString(R.string.invalid_dni_extended), false);
                     }
                 }
                 catch(Exception ex){
-                    goToError(getString(R.string.sorry),getString(R.string.general_error));
+                    goToError(getString(R.string.sorry),getString(R.string.general_error), false);
                 }
             }
         });
@@ -106,11 +99,12 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(userInfoIntent);
     }
 
-    private void goToError(String title, String message) {
+    private void goToError(String title, String message, boolean isWarning) {
         Intent intent = new Intent(LoginActivity.this, ErrorActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString(Constants.bundle_error_title, title);
         bundle.putString(Constants.bundle_error_message, message);
+        bundle.putBoolean(Constants.bundle_error_is_warning, isWarning);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -166,11 +160,11 @@ public class LoginActivity extends AppCompatActivity {
             {
                 try
                 {
-                    goToError(getString(R.string.sorry), patientInfo.getString(Constants.errorCode) );
+                    goToError(getString(R.string.sorry), patientInfo.getString(Constants.errorCode),true);
                 }
-                catch (JSONException e1)
+                catch (Exception e1)
                 {
-                    goToError(getString(R.string.sorry),getString(R.string.general_error));
+                    goToError(getString(R.string.sorry),getString(R.string.general_error), false);
                 }
             }
         }

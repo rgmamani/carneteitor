@@ -15,4 +15,6 @@
     <string name="patient_doesnt_exist">El documento ingresado no pertenece a un afiliado activo.</string>
 
     <string name="geting_user">Consultando Afiliación</string>
+    <string name="incorrect">INCORRECTO</string>
+    <string name="no_user">NO AFILIADO</string>
 </resources>

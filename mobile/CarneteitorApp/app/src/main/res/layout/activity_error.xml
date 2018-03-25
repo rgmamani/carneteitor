@@ -1,25 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/back_red"
+    android:id="@+id/background">
 
 
-    <TextView
-        android:id="@+id/txtMensaje"
+    <ImageView
+        android:id="@+id/error_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Mensaje" />
+        android:src="@drawable/error"
+        android:layout_centerInParent="true"/>
+
 
     <TextView
         android:id="@+id/txtTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/txtMensaje"
+        android:layout_below="@+id/error_img"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp"
+        android:layout_marginTop="20dp"
         android:textAlignment="center"
-        android:text="Titulo" />
+        android:text="Titulo"
+        android:textColor="@color/fontWhite"
+        android:fontFamily="@font/hum777b"
+        android:textAppearance="@android:style/TextAppearance.Medium"/>
+
+    <TextView
+        android:id="@+id/txtMensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_below="@id/txtTitulo"
+        android:text="Mensaje"
+        android:textColor="@color/fontWhite"
+        android:fontFamily="@font/hum521l"
+        android:textAppearance="@android:style/TextAppearance.Large"/>
+
 
 </RelativeLayout>

@@ -11,9 +11,9 @@ public class Constants {
 
     static final String errorCode = "error";
 
-
     static final String bundle_error_title = "error_title";
     static final String bundle_error_message = "error_message";
+    static final String bundle_error_is_warning = "error_just_watning";
 
     static int RESPONSE_OK = 200;
     static int RESPONSE_PATIENT_NOT_FOUND = 404;

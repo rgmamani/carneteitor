@@ -69,7 +69,8 @@
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/fontWhite"
         android:textColorHint="@color/fontWhiteHint"
-        android:fontFamily="@font/hum521l"/>
+        android:fontFamily="@font/hum521l"
+        android:textAppearance="@android:style/TextAppearance.Medium"/>
 
     <TextView
         android:id="@+id/textView2"
@@ -83,6 +84,7 @@
         android:textColor="@color/fontWhite"
         app:layout_constraintBottom_toTopOf="@+id/textDNI"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:textAppearance="@android:style/TextAppearance.Medium"/>
 
 </android.support.constraint.ConstraintLayout>
