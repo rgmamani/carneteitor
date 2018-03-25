@@ -1,133 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/back_green">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinetop"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".2"/>
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinebottom"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4"/>
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/back_photo"
+        app:layout_constraintBottom_toTopOf="@+id/guidelinebottom"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelinetop">
 
         <ImageView
             android:id="@+id/photo"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            app:srcCompat="@android:drawable/ic_notification_overlay"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/no_photo" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/ok_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:srcCompat="@drawable/ok" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="AFILIADO ACTIVO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ok_img"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/fontWhite"
+        android:fontFamily="@font/hum777b"/>
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideInfo"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guideInfoBottom"
+        app:layout_constraintTop_toTopOf="@+id/guideInfo">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".1"/>
+            android:layout_weight=".1" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/textViewDocumento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight=".5"
-                android:textAlignment="textEnd"
                 android:layout_gravity="end"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
-                android:text="Documento:" />
+                android:layout_weight=".5"
+                android:fontFamily="@font/hum521l"
+                android:text="Documento:"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/fontYellow" />
 
             <TextView
                 android:id="@+id/txtDNI"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".5"
-                android:text="TextView" />
+                android:fontFamily="@font/hum521l"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/fontWhite" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/textViewName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight=".5"
-                android:textAlignment="textEnd"
                 android:layout_gravity="end"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
-                android:text="Nombre:"/>
+                android:layout_weight=".5"
+                android:fontFamily="@font/hum521l"
+                android:text="Nombre:"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/fontYellow" />
 
             <TextView
                 android:id="@+id/txtName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".5"
-                android:text="TextView" />
+                android:fontFamily="@font/hum521l"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/fontWhite" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/textViewLastname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight=".5"
-                android:textAlignment="textEnd"
                 android:layout_gravity="end"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
-                android:text="Apellido:" />
+                android:layout_weight=".5"
+                android:fontFamily="@font/hum521l"
+                android:text="Apellido:"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/fontYellow" />
 
             <TextView
                 android:id="@+id/txtLastname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".5"
-                android:text="TextView" />
+                android:fontFamily="@font/hum521l"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/fontWhite" />
 
 
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/textViewState"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight=".5"
-                android:textAlignment="textEnd"
                 android:layout_gravity="end"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
-                android:text="Ciudad:" />
+                android:layout_weight=".5"
+                android:fontFamily="@font/hum521l"
+                android:text="Ciudad:"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/fontYellow" />
 
             <TextView
                 android:id="@+id/txtState"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".5"
-                android:text="TextView" />
+                android:fontFamily="@font/hum521l"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/fontWhite" />
 
         </LinearLayout>
 
@@ -140,46 +228,47 @@
                 android:id="@+id/textViewProvince"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight=".5"
-                android:textAlignment="textEnd"
                 android:layout_gravity="end"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
-                android:text="Provincia:" />
+                android:layout_weight=".5"
+                android:fontFamily="@font/hum521l"
+                android:text="Provincia:"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/fontYellow" />
 
             <TextView
                 android:id="@+id/txtProvince"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".5"
-                android:text="TextView" />
+                android:fontFamily="@font/hum521l"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/fontWhite" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".2"/>
+            android:layout_weight=".1" />
 
     </LinearLayout>
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideInfoBottom"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1"/>
+
+</android.support.constraint.ConstraintLayout>
+
+
+<!--
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</RelativeLayout>
+-->

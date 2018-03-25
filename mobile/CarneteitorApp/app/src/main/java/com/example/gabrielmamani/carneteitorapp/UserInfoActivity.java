@@ -40,7 +40,11 @@ public class UserInfoActivity extends AppCompatActivity {
             txtState.setText(userData.getStringExtra(Constants.keyLocalidad));
             txtProvince.setText(userData.getStringExtra(Constants.keyProv));
 
-            Picasso.with(this).load(userData.getStringExtra(Constants.keyImage)).into(photoView);
+            String photo = userData.getStringExtra(Constants.keyImage);
+            if(photo!= null && !photo.isEmpty())
+            {
+                Picasso.with(this).load(photo).into(photoView);
+            }
         }
     }
 }
