@@ -1,10 +1,14 @@
 package com.example.gabrielmamani.carneteitorapp;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     OkHttpClient client = new OkHttpClient();
     EditText txtDni;
     Button btnLogin;
+    ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +42,18 @@ public class LoginActivity extends AppCompatActivity {
                     if (validateDNI(dni))
                     {
                         String url = Configuration.get_user_url + dni;
+                        displayProgressDialog(getString(R.string.geting_user));
                         new RetrieveFeedTask().execute(url);
                     }
                     else{
-                        goToError(getString(R.string.invalid_dni),getString(R.string.invalid_dni_extended));
+                        Utils.displayMessageDialog(LoginActivity.this,null, getString(R.string.invalid_dni_extended), new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+
+                            }
+                        });
                     }
                 }
                 catch(Exception ex){
@@ -59,11 +72,24 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
 
-        if(dni.length() != 7){
+        if(dni.length() != 8){
             return false;
         }
 
         return true;
+    }
+
+    private void displayProgressDialog(String message)
+    {
+        progress = new ProgressDialog(this);
+        progress.setMessage(message);
+        progress.setCancelable(false);
+        progress.show();
+    }
+
+    private void hideProgressDialog()
+    {
+        progress.dismiss();
     }
 
     private void displayUserInfo(JSONObject userInfo) throws Exception
@@ -130,6 +156,8 @@ public class LoginActivity extends AppCompatActivity {
 
         protected void onPostExecute(JSONObject patientInfo)
         {
+            hideProgressDialog();
+
             try
             {
                 displayUserInfo(patientInfo);
