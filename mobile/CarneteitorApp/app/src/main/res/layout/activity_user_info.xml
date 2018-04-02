@@ -202,7 +202,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight=".5"
                 android:fontFamily="@font/hum521l"
-                android:text="Ciudad:"
+                android:text="Localidad:"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/fontYellow" />

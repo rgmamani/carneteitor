@@ -3,6 +3,7 @@ package com.example.gabrielmamani.carneteitorapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,11 +40,21 @@ public class UserInfoActivity extends AppCompatActivity {
             txtDni.setText(userData.getStringExtra(Constants.keyDoc));
             txtName.setText(userData.getStringExtra(Constants.keyNombre));
             txtLastname.setText(userData.getStringExtra(Constants.keyApellido));
-            txtState.setText(userData.getStringExtra(Constants.keyLocalidad));
+
+            String localidad = userData.getStringExtra(Constants.keyLocalidad);
+
+            if (localidad.equals("null") || TextUtils.isEmpty(localidad))
+            {
+                txtState.setText("");
+            }
+            else
+            {
+                txtState.setText(localidad);
+            }
 
             String provincia = userData.getStringExtra(Constants.keyProv);
 
-            if (provincia == null || provincia.isEmpty())
+            if (provincia.equals("null") || provincia.isEmpty())
             {
                 textViewProvince.setText("");
             }
