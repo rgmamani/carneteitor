@@ -15,6 +15,7 @@ public class UserInfoActivity extends AppCompatActivity {
     TextView txtName;
     TextView txtLastname;
     TextView txtState;
+    TextView textViewProvince;
     TextView txtProvince;
     ImageView photoView;
 
@@ -27,6 +28,7 @@ public class UserInfoActivity extends AppCompatActivity {
         txtName = findViewById(R.id.txtName);
         txtLastname = findViewById(R.id.txtLastname);
         txtState = findViewById(R.id.txtState);
+        textViewProvince = findViewById(R.id.textViewProvince);
         txtProvince = findViewById(R.id.txtProvince);
         photoView = findViewById(R.id.photo);
 
@@ -38,10 +40,21 @@ public class UserInfoActivity extends AppCompatActivity {
             txtName.setText(userData.getStringExtra(Constants.keyNombre));
             txtLastname.setText(userData.getStringExtra(Constants.keyApellido));
             txtState.setText(userData.getStringExtra(Constants.keyLocalidad));
-            txtProvince.setText(userData.getStringExtra(Constants.keyProv));
+
+            String provincia = userData.getStringExtra(Constants.keyProv);
+
+            if (provincia == null || provincia.isEmpty())
+            {
+                textViewProvince.setText("");
+            }
+            else
+            {
+                txtProvince.setText(provincia);
+            }
 
             String photo = userData.getStringExtra(Constants.keyImage);
-            if(photo!= null && !photo.isEmpty())
+
+            if(photo != null && !photo.isEmpty())
             {
                 Picasso.with(this).load(photo).into(photoView);
             }
