@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
 
-        if(dni.length() > 8 || dni.length() < 6){
+        if(dni.length() > 8 || dni.length() < 7){
             return false;
         }
 

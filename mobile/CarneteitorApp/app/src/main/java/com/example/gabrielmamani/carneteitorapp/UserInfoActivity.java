@@ -45,7 +45,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
             if (localidad.equals("null") || TextUtils.isEmpty(localidad))
             {
-                txtState.setText("");
+                txtState.setText(" - ");
             }
             else
             {
@@ -56,7 +56,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
             if (provincia.equals("null") || provincia.isEmpty())
             {
-                textViewProvince.setText("");
+                txtProvince.setText(" - ");
             }
             else
             {
