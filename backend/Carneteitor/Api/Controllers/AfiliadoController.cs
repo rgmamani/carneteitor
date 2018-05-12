@@ -21,19 +21,24 @@ namespace Api.Controllers
         {
             try
             {
-                LiteCollection<AfiliadoModel> customers;
-                var databasePath = HttpContext.Current.Server.MapPath(string.Format("~/Data/{0}", ConfigurationHelper.DatabaseFile));
-                // Open database (or create if not exits)
-                using (var db = new LiteDatabase(databasePath))
-                {
-                    // Get customer collection
-                    customers = db.GetCollection<AfiliadoModel>("customers");
-                }
+                var list = DatabaseHelper.Instance.GetAll();
 
-                // Use Linq to query documents
-                var list = customers.FindAll();
-                // HTTP 200
                 return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError();
+            }
+        }
+
+        [HttpGet, ActionName("get-total-count")]
+        public IHttpActionResult ObtenerTotalAfiliados()
+        {
+            try
+            {
+                var total = DatabaseHelper.Instance.GetTotalCount();
+             
+                return Ok(new { CantidadDeAfiliados = total });
             }
             catch (Exception ex)
             {
@@ -51,16 +56,7 @@ namespace Api.Controllers
 
             try
             {
-                AfiliadoModel model;
-                var databasePath = HttpContext.Current.Server.MapPath(string.Format("~/Data/{0}", ConfigurationHelper.DatabaseFile));
-                // Open database (or create if not exits)
-                using (var db = new LiteDatabase(databasePath))
-                {
-                    // Get customer collection
-                    var customers = db.GetCollection<AfiliadoModel>("customers");
-                    // Use Linq to query documents
-                    model = customers.FindOne(x => x.Documento.Equals(parameters.Documento));
-                }
+                AfiliadoModel model = DatabaseHelper.Instance.GetById(parameters.Documento);
 
                 if (model == null)
                 {

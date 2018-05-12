@@ -1,6 +1,8 @@
 ﻿using Api.Helper;
 using Api.Models;
 using LiteDB;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Http;
 
@@ -19,6 +21,8 @@ namespace Api
         {
             var filePath = HttpContext.Current.Server.MapPath(string.Format("~/Data/{0}", ConfigurationHelper.DataFile));
             var list = ReadDataHelper.Read(filePath);
+            var sanityList = list.Where(x => !string.IsNullOrEmpty(x.Documento)).ToList();
+            var distinctItems = sanityList.Distinct(new DistinctItemComparer()).ToList();
             var databasePath = HttpContext.Current.Server.MapPath(string.Format("~/Data/{0}", ConfigurationHelper.DatabaseFile));
 
             // Open database (or create if not exits)
@@ -34,7 +38,7 @@ namespace Api
                 }
 
                 // Inserting a high volume of documents (Id will be auto-incremented)
-                customers.InsertBulk(list);
+                customers.InsertBulk(distinctItems);
                 // Index document using a document property
                 customers.EnsureIndex(x => x.Documento);
             }
