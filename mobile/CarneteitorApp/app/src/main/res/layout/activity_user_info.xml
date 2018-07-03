@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@drawable/back_green">
+    android:background="@drawable/back_yellow">
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelinetop"
@@ -66,7 +66,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ok_img"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/fontWhite"
         android:fontFamily="@font/hum777b"/>
 
 
@@ -107,8 +106,8 @@
                 android:fontFamily="@font/hum521l"
                 android:text="Documento:"
                 android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/fontYellow" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:id="@+id/txtDNI"
@@ -117,8 +116,8 @@
                 android:layout_weight=".5"
                 android:fontFamily="@font/hum521l"
                 android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/fontWhite" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         </LinearLayout>
 
@@ -139,8 +138,8 @@
                 android:fontFamily="@font/hum521l"
                 android:text="Nombre:"
                 android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/fontYellow" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:id="@+id/txtName"
@@ -149,8 +148,8 @@
                 android:layout_weight=".5"
                 android:fontFamily="@font/hum521l"
                 android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/fontWhite" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         </LinearLayout>
 
@@ -171,8 +170,8 @@
                 android:fontFamily="@font/hum521l"
                 android:text="Apellido:"
                 android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/fontYellow" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:id="@+id/txtLastname"
@@ -181,8 +180,8 @@
                 android:layout_weight=".5"
                 android:fontFamily="@font/hum521l"
                 android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/fontWhite" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 
         </LinearLayout>
@@ -204,8 +203,8 @@
                 android:fontFamily="@font/hum521l"
                 android:text="Localidad:"
                 android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/fontYellow" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:id="@+id/txtState"
@@ -214,8 +213,8 @@
                 android:layout_weight=".5"
                 android:fontFamily="@font/hum521l"
                 android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/fontWhite" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         </LinearLayout>
 
@@ -235,8 +234,8 @@
                 android:fontFamily="@font/hum521l"
                 android:text="Provincia:"
                 android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/fontYellow" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:id="@+id/txtProvince"
@@ -245,15 +244,16 @@
                 android:layout_weight=".5"
                 android:fontFamily="@font/hum521l"
                 android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/fontWhite" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".1" />
+            android:layout_weight=".1" >
+        </View>
 
     </LinearLayout>
 

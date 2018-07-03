@@ -32,8 +32,7 @@ public class ErrorActivity extends AppCompatActivity {
         if(bundle.getBoolean(Constants.bundle_error_is_warning))
         {
             backView = findViewById(R.id.background);
-            backView.setBackgroundResource(R.drawable.back_orange);
+            backView.setBackgroundResource(R.drawable.back_gray);
         }
-
     }
 }

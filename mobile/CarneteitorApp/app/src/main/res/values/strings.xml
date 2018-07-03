@@ -7,14 +7,15 @@
     <string name="consultar">Consultar</string>
     <string name="title_activity_error">ErrorActivity</string>
 
-    <string name="general_error">Ha ocurrido un error, intentelo nuevamente</string>
+    <string name="general_error">Ha ocurrido un error, inténtelo nuevamente.</string>
     <string name="sorry">Lo sentimos"</string>
 
     <string name="invalid_dni_extended">El DNI ingresado no es un número válido.</string>
-
     <string name="patient_doesnt_exist">El documento ingresado no pertenece a un afiliado activo.</string>
 
     <string name="geting_user">Consultando Afiliación</string>
     <string name="incorrect">INCORRECTO</string>
     <string name="no_user">NO AFILIADO</string>
+
+    <string name="recibo_de_haberes">Válido con último recibo de haberes.</string>
 </resources>

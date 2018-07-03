@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
                 catch(Exception ex){
-                    goToError(getString(R.string.sorry),getString(R.string.general_error), false);
+                    goToError(getString(R.string.sorry),getString(R.string.general_error), true);
                 }
             }
         });
