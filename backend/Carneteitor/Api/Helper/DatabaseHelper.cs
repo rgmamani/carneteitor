@@ -49,7 +49,8 @@ namespace Api.Helper
             }
             catch (Exception ex)
             {
-                Log.Error("Read LiteDb file", ex);
+                var message = string.Format("{0} => {1}", "DatabaseHelper", "GetAll");
+                Log.Error(message, ex);
                 throw;
             }
         }
@@ -71,7 +72,8 @@ namespace Api.Helper
             }
             catch (Exception ex)
             {
-                Log.Error("Read LiteDb file", ex);
+                var message = string.Format("{0} => {1}", "DatabaseHelper", "GetTotalCount");
+                Log.Error(message, ex);
                 throw;
             }
         }
@@ -95,7 +97,8 @@ namespace Api.Helper
             }
             catch (Exception ex)
             {
-                Log.Error("Read LiteDb file", ex);
+                var message = string.Format("{0} => {1}", "DatabaseHelper", "GetById");
+                Log.Error(message, ex);
                 throw;
             }
         }

@@ -32,7 +32,8 @@ namespace Api.Helper
             }
             catch (Exception ex)
             {
-                Log.Error("Read xls file", ex);
+                var message = string.Format("{0} => {1}", "ReadDataHelper", "Read");
+                Log.Error(message, ex);
                 throw;
             }
         }
