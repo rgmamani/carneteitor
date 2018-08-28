@@ -164,7 +164,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 catch (Exception e1)
                 {
-                    goToError(getString(R.string.sorry),getString(R.string.general_error), false);
+                    goToError(getString(R.string.sorry), getString(R.string.general_error), false);
                 }
             }
         }

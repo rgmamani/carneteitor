@@ -23,6 +23,11 @@ public class ErrorActivity extends AppCompatActivity {
         Title = bundle.getString(Constants.bundle_error_title);
         Message = bundle.getString(Constants.bundle_error_message);
 
+        if (Message.equalsIgnoreCase("El documento ingresado no pertenece a un afiliado activo."))
+        {
+            Title = "NO AFILIADO";
+        }
+
         TextView txtTitulo = findViewById(R.id.txtTitulo);
         TextView txtMensaje = findViewById(R.id.txtMensaje);
 
