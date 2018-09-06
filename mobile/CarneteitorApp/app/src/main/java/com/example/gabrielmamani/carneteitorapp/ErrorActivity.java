@@ -23,6 +23,7 @@ public class ErrorActivity extends AppCompatActivity {
         Title = bundle.getString(Constants.bundle_error_title);
         Message = bundle.getString(Constants.bundle_error_message);
 
+        //TODO: cambiar esta comparacion
         if (Message.equalsIgnoreCase("El documento ingresado no pertenece a un afiliado activo."))
         {
             Title = "NO AFILIADO";

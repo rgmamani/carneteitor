@@ -2,6 +2,7 @@ package com.example.gabrielmamani.carneteitorapp;
 
 
 public class Constants {
+    public static final String keyAfiliado = "Numero";
     public static final String keyDoc = "Documento";
     public static final String keyNombre = "Nombre";
     public static final String keyApellido = "Apellido";

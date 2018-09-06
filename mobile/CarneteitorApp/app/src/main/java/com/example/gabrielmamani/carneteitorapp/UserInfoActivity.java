@@ -12,6 +12,7 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 public class UserInfoActivity extends AppCompatActivity {
+    TextView txtAfiliado;
     TextView txtDni;
     TextView txtName;
     TextView txtLastname;
@@ -25,6 +26,7 @@ public class UserInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
+        txtAfiliado = findViewById(R.id.txtAfiliado);
         txtDni = findViewById(R.id.txtDNI);
         txtName = findViewById(R.id.txtName);
         txtLastname = findViewById(R.id.txtLastname);
@@ -37,6 +39,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
         if(userData != null)
         {
+            txtAfiliado.setText(userData.getStringExtra(Constants.keyAfiliado));
             txtDni.setText(userData.getStringExtra(Constants.keyDoc));
             txtName.setText(userData.getStringExtra(Constants.keyNombre));
             txtLastname.setText(userData.getStringExtra(Constants.keyApellido));

@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
                 try{
                     if (validateDNI(dni))
                     {
-                        String url = Configuration.get_user_url + dni;
+                        String url = Configuration.get_user_url_local + dni;
                         displayProgressDialog(getString(R.string.geting_user));
                         new RetrieveFeedTask().execute(url);
                     }
