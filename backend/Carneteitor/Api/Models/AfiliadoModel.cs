@@ -11,5 +11,6 @@ namespace Api.Models
         public string Localidad { get; set; }
         public string Provincia { get; set; }
         public string ImagenPerfilUrl { get; set; }
+        public string Numero { get; set; }
     }
 }

@@ -7,6 +7,7 @@ namespace Api.Helper
         public static string DataFile = WebConfigurationManager.AppSettings["ArchivoDeDatos"];
         public static string DatabaseFile = WebConfigurationManager.AppSettings["BaseDeDatos"];
         public static string SheetName = WebConfigurationManager.AppSettings["NombreHoja"];
+        public static string Id = WebConfigurationManager.AppSettings["NumeroAfiliado"];
         public static string DocumentColumn = WebConfigurationManager.AppSettings["Documento"];
         public static string NameColumn = WebConfigurationManager.AppSettings["Nombre"];
         public static string LastnameColumn = WebConfigurationManager.AppSettings["Apellido"];

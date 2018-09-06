@@ -16,15 +16,15 @@ namespace Api.Helper
             try
             {
                 var book = new LinqToExcel.ExcelQueryFactory(path);
-
                 var query = (from row in book.Worksheet(ConfigurationHelper.SheetName)
                              let item = new AfiliadoModel
                              {
+                                 Numero = row[ConfigurationHelper.Id].Cast<string>(),
                                  Documento = row[ConfigurationHelper.DocumentColumn].Cast<string>(),
                                  Nombre = row[ConfigurationHelper.NameColumn].Cast<string>(),
                                  Apellido = row[ConfigurationHelper.LastnameColumn].Cast<string>(),
                                  Localidad = row[ConfigurationHelper.StateColumn].Cast<string>(),
-                                 Provincia = row[ConfigurationHelper.ProvinceColumn].Cast<string>()
+                                 Provincia = row[ConfigurationHelper.ProvinceColumn].Cast<string>(),
                              }
                              select item).ToList();
 
