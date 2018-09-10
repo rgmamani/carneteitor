@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
                 try{
                     if (validateDNI(dni))
                     {
-                        String url = Configuration.get_user_url_local + dni;
+                        String url = Configuration.get_user_url + dni;
                         displayProgressDialog(getString(R.string.geting_user));
                         new RetrieveFeedTask().execute(url);
                     }
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
     private void displayUserInfo(JSONObject userInfo) throws Exception
     {
         Intent userInfoIntent = new Intent(this, UserInfoActivity.class);
-
+        userInfoIntent.putExtra(Constants.keyAfiliado, userInfo.getString(Constants.keyAfiliado));
         userInfoIntent.putExtra(Constants.keyDoc, userInfo.getString(Constants.keyDoc));
         userInfoIntent.putExtra(Constants.keyNombre, userInfo.getString(Constants.keyNombre));
         userInfoIntent.putExtra(Constants.keyApellido, userInfo.getString(Constants.keyApellido));
